@@ -31,4 +31,13 @@ public class GWSQL {
 	{
 		
 	}
+	
+	public void Stats()
+	{
+		try {
+			Statement stat = con.createStatement();
+			ResultSet result = stat.executeQuery("SELECT COUNT(*) as counter FROM `" + this.plugin.gwConfig.get("db_table") + "`");
+			System.out.println("Ban Records: " + result.getInt("counter"));
+		} catch ( SQLException e ) { e.printStackTrace(); }
+	}
 }

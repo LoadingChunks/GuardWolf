@@ -50,6 +50,8 @@ public class GuardWolf extends JavaPlugin {
         
         sql.Connect();
         
+        sql.Stats();
+        
         System.out.println("GuardWolf Config saved to memory.");
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
