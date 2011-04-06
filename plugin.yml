@@ -1,0 +1,16 @@
+name: GuardWolf
+main: net.loadingchunks.plugins.GuardWolf.GuardWolf
+version: 0.1
+commands:
+  gw:
+    description: GuardWolf Management and Info Commands.
+    usage: "Type '/gw help' for more information.
+  ban:
+    description: Ban Hammer!
+    usage: "/ban <name> [length] [reason]"
+  unban:
+    description: Pardon your users.
+    usage: "/unban <name>"
+  banlist:
+    description: View bans for a specific user.
+    usage: "/banlist <name>"
