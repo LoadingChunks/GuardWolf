@@ -20,10 +20,15 @@ public class GWSQL {
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			this.con = DriverManager.getConnection(this.plugin.gwConfig.get("db_name"), this.plugin.gwConfig.get("db_user"), this.plugin.gwConfig.get("db_pass"));
+			this.con = DriverManager.getConnection(this.plugin.gwConfig.get("db_address"), this.plugin.gwConfig.get("db_user"), this.plugin.gwConfig.get("db_pass"));
 		} catch ( SQLException e )
 		{
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) { e.printStackTrace(); }
+	}
+	
+	public void Ban(String name, String banner, Integer time, String reason)
+	{
+		
 	}
 }
