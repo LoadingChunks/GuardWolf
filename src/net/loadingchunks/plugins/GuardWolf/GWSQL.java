@@ -52,7 +52,7 @@ public class GWSQL {
 	public String CheckBan(String user)
 	{
 		try {
-			PreparedStatement stat = con.prepareStatement("SELECT * FROM `mcusers_ban` WHERE expires_at > NOW() ORDER BY id DESC");
+			PreparedStatement stat = con.prepareStatement("SELECT * FROM `mcusers_ban` WHERE expires_at > NOW() AND `user` = '" + user + "' ORDER BY id DESC");
 			ResultSet result = stat.executeQuery();
 			result.next();
 			if(result.getString("user").length() > 0)
