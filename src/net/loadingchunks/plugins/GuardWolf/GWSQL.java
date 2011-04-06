@@ -48,4 +48,18 @@ public class GWSQL {
 			System.out.println("Ban Records: " + result.getInt("counter"));
 		} catch ( SQLException e ) { e.printStackTrace(); }
 	}
+	
+	public String CheckBan(String user)
+	{
+		try {
+			PreparedStatement stat = con.prepareStatement("SELECT * FROM `mcusers_ban` WHERE expires_at > NOW() ORDER BY id DESC");
+			ResultSet result = stat.executeQuery();
+			result.next();
+			if(result.getString("user").length() > 0)
+			{
+				return result.getString("reason") + "\n (Expires " + result.getString("expires_at") + ") - " + result.getString("banned_by");
+			} else return null;
+		} catch ( SQLException e ) { e.printStackTrace(); }
+		return null;
+	}
 }

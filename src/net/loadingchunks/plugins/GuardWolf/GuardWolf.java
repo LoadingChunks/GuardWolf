@@ -19,6 +19,7 @@ import org.bukkit.util.config.Configuration;
 public class GuardWolf extends JavaPlugin {
 	public final HashMap<String, String> gwConfig = new HashMap<String, String>();
 	public final GWSQL sql = new GWSQL(this);
+	private final GWPlayerListener playerListener = new GWPlayerListener(this);
 
     public void onDisable() {
         System.out.println("Goodbye world!");
@@ -30,6 +31,12 @@ public class GuardWolf extends JavaPlugin {
         getCommand("ban").setExecutor(new GWBan(this));
         getCommand("unban").setExecutor(new GWBan(this));
         getCommand("banlist").setExecutor(new GWBan(this));
+        
+        // Register events
+        
+        PluginManager pm = getServer().getPluginManager();
+        
+        pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.High, this);
         
         // Get the config.
         
