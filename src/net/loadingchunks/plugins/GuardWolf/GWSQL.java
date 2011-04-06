@@ -58,7 +58,7 @@ public class GWSQL {
 			result.next();
 			if(!result.wasNull())
 			{
-				return result.getString("reason") + "\r\n (Expires " + result.getString("expires_at") + ") - " + result.getString("banned_by");
+				return result.getString("reason") + System.getProperty("line.separator") + " (Expires " + result.getString("expires_at") + ") - " + result.getString("banned_by");
 			} else return null;
 		} catch ( SQLException e ) { e.printStackTrace(); }
 		return null;
