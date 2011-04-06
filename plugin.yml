@@ -4,13 +4,13 @@ version: 0.1
 commands:
   gw:
     description: GuardWolf Management and Info Commands.
-    usage: "Type '/gw help' for more information.
+    usage: Type '/gw help' for more information.
   ban:
-    description: Ban Hammer!
-    usage: "/ban <name> [length] [reason]"
+    description: Ban Hammer
+    usage: Type /gw help for a full list of GuardWolf Commands.
   unban:
     description: Pardon your users.
-    usage: "/unban <name>"
+    usage: Type /gw help for a full list of GuardWolf Commands.
   banlist:
     description: View bans for a specific user.
-    usage: "/banlist <name>"
+    usage: Type /gw help for a full list of GuardWolf Commands.

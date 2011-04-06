@@ -18,6 +18,7 @@ import org.bukkit.util.config.Configuration;
  */
 public class GuardWolf extends JavaPlugin {
 	public final HashMap<String, String> gwConfig = new HashMap<String, String>();
+	public final GWSQL sql = new GWSQL(this);
 
     public void onDisable() {
         System.out.println("Goodbye world!");
@@ -26,6 +27,9 @@ public class GuardWolf extends JavaPlugin {
     public void onEnable() {
         // Register our commands
         getCommand("gw").setExecutor(new GWCommand(this));
+        getCommand("ban").setExecutor(new GWBan(this));
+        getCommand("unban").setExecutor(new GWBan(this));
+        getCommand("banlist").setExecutor(new GWBan(this));
         
         // Get the config.
         
@@ -42,6 +46,8 @@ public class GuardWolf extends JavaPlugin {
         gwConfig.put("limit_l1", _config.getString("gw.limit.level1"));
         gwConfig.put("limit_l2", _config.getString("gw.limit.level2"));
         gwConfig.put("limit_l3", _config.getString("gw.limit.level3"));
+        
+        sql.Connect();
         
         System.out.println("GuardWolf Config saved to memory.");
 

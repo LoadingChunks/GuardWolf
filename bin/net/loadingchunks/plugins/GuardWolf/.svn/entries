@@ -2,7 +2,7 @@
 
 dir
 0
-https://svn.github.com/Cueball61/GuardWolf/bin/net/loadingchunks/plugins/GuardWolf
+https://svn.github.com/Cueball61/GuardWolf/src/net/loadingchunks/plugins/GuardWolf
 https://svn.github.com/Cueball61/GuardWolf
 add
 
@@ -26,45 +26,24 @@ add
 
 5963f5aa-0f04-741a-e06e-ce57b7db7bff
 
-GWCommand.class
+GuardWolf.java
 file
 
 
 
 add
-
-
-
-
-
-has-props
-has-prop-mods
 
-GWSQL.class
+GWCommand.java
 file
 
 
 
 add
-
-
-
-
-
-has-props
-has-prop-mods
 
-GuardWolf.class
+GWSQL.java
 file
 
 
 
 add
-
-
-
-
-
-has-props
-has-prop-mods
 

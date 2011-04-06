@@ -9,4 +9,15 @@ import java.sql.*;
 public class GWSQL {
 	public Connection con;
 	public Statement stmt;
+	public final GuardWolf plugin;
+	
+	public GWSQL(GuardWolf plugin)
+	{
+		this.plugin = plugin;
+	}
+	
+	public void Connect()
+	{
+		
+	}
 }
