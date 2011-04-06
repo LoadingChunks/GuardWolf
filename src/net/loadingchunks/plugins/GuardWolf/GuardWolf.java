@@ -40,7 +40,7 @@ public class GuardWolf extends JavaPlugin {
         
         System.out.println("Loaded GuardWolf Config Successfully!");
         
-        gwConfig.put("db_uri", _config.getString("gw.db.uri"));
+        gwConfig.put("db_name", _config.getString("gw.db.name"));
         gwConfig.put("db_user", _config.getString("gw.db.user"));
         gwConfig.put("db_pass", _config.getString("gw.db.pass"));
         gwConfig.put("limit_l1", _config.getString("gw.limit.level1"));

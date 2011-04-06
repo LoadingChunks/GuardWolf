@@ -18,6 +18,12 @@ public class GWSQL {
 	
 	public void Connect()
 	{
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			this.con = DriverManager.getConnection(this.plugin.gwConfig.get("db_name"), this.plugin.gwConfig.get("db_user"), this.plugin.gwConfig.get("db_pass"));
+		} catch ( SQLException e )
+		{
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) { e.printStackTrace(); }
 	}
 }
