@@ -51,11 +51,12 @@ public class GWSQL {
 	
 	public String CheckBan(String user)
 	{
+		System.out.println("[GW] Checking ban status...");
 		try {
 			PreparedStatement stat = con.prepareStatement("SELECT * FROM `mcusers_ban` WHERE expires_at > NOW() AND `user` = '" + user + "' ORDER BY id DESC");
 			ResultSet result = stat.executeQuery();
 			result.next();
-			if(result.wasNull())
+			if(!result.wasNull())
 			{
 				return result.getString("reason") + "\n (Expires " + result.getString("expires_at") + ") - " + result.getString("banned_by");
 			} else return null;
