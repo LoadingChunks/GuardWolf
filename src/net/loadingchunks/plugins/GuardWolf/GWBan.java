@@ -65,6 +65,7 @@ public class GWBan implements CommandExecutor {
     			}
     		}
     		sender.sendMessage("Got Timestamp: " + (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000) + " and Reason: " + reason);
+    		plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
     	}
     }
 }

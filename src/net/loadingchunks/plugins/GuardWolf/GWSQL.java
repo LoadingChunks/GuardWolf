@@ -27,7 +27,7 @@ public class GWSQL {
 		} catch (ClassNotFoundException e) { e.printStackTrace(); }
 	}
 	
-	public void Ban(String name, String banner, Integer time, String reason)
+	public void Ban(String name, String banner, long time, String reason)
 	{
 		Integer strike = 1;
 		try {
