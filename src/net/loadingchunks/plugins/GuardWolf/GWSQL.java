@@ -29,7 +29,14 @@ public class GWSQL {
 	
 	public void Ban(String name, String banner, Integer time, String reason)
 	{
-		
+		Integer strike = 1;
+		try {
+			PreparedStatement stat = con.prepareStatement("INSERT INTO `" + this.plugin.gwConfig.get("db_table") + "`" +
+					"(`user`,`country`,`banned_at`,`expires_at`,`reason`,`banned_by`,`strike`,`strike_expires`)" +
+					" VALUES ('" + name + "','GB',NOW(),FROM_UNIXTIME(" + time + "),'" + reason + "','" + banner + "'," + strike + ",NOW())"
+					);
+			stat.execute();
+		} catch ( SQLException e ) { e.printStackTrace(); }
 	}
 	
 	public void Stats()
