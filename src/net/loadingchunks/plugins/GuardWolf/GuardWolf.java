@@ -54,6 +54,7 @@ public class GuardWolf extends JavaPlugin {
         gwConfig.put("limit_l1", _config.getString("gw.limit.level1"));
         gwConfig.put("limit_l2", _config.getString("gw.limit.level2"));
         gwConfig.put("limit_l3", _config.getString("gw.limit.level3"));
+        gwConfig.put("default_time", _config.getString("gw.defaults.bantime"));
         
         sql.Connect();
         

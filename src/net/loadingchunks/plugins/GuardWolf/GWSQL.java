@@ -58,7 +58,10 @@ public class GWSQL {
 			result.next();
 			if(!result.wasNull())
 			{
-				return result.getString("reason") + System.getProperty("line.separator") + " (Expires " + result.getString("expires_at") + ") - " + result.getString("banned_by");
+				if(result.getString("expires_at").equalsIgnoreCase("00/00/00 00:00:00"))
+					return result.getString("reason") + System.getProperty("line.separator") + " (Permanent Ban)";
+				else
+					return result.getString("reason") + System.getProperty("line.separator") + " (Expires " + result.getString("expires_at") + ")";
 			} else return null;
 		} catch ( SQLException e ) { e.printStackTrace(); }
 		return null;

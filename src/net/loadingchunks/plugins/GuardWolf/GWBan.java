@@ -57,15 +57,29 @@ public class GWBan implements CommandExecutor {
     		return;
     	} else {
     		if(args.length >= 2)
-    			time = TimeParser.parseTime(args[1], sender);
-    		if(args.length > 3)
+    		{
+    			if(args[1] != "permanent")
+    				time = TimeParser.parseTime(args[1], sender);
+    		}
+    		else if (args.length < 2)
+    			time = TimeParser.parseTime(this.plugin.gwConfig.get("default_time"), sender);
+
+    		if(args.length >= 3)
     		{
     			for (int i = 2; i < args.length; i++) {
     				reason = reason + " " + args[i];
     			}
     		}
-    		sender.sendMessage("Got Timestamp: " + (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000) + " and Reason: " + reason);
-    		plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
+    		
+    		if(args.length >= 2)
+    		{
+    			if(args[1].equalsIgnoreCase("permanent"))
+    				plugin.sql.Ban(args[0], sender.getName(), 0, reason);
+    			else
+    				plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
+    		} else
+    			plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
+    		
     	}
     }
 }
