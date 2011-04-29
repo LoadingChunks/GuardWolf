@@ -79,7 +79,7 @@ public class GWSQL {
 	
 	public String ListBan(int page, String user, CommandSender sender)
 	{
-		String returnString = "";
+		String tempString = "";
 		if(user.isEmpty())
 		{
 			try {
@@ -92,9 +92,8 @@ public class GWSQL {
 					result.first();
 					do
 					{
-						returnString = returnString + "&n" + "- " + result.getString("user") + " (" + result.getInt("c") + " bans found)";
+						sender.sendMessage("- " + ChatColor.WHITE + result.getString("user") + " (" + result.getInt("c") + " bans found)");
 					} while(result.next());
-					return returnString;	
 				}
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		} else {
@@ -108,14 +107,13 @@ public class GWSQL {
 					result.first();
 					do
 					{
-						System.out.print("Look what I found!");
-						returnString = returnString + "&n" + "- " + result.getString("reason");
+						tempString = "- " + ChatColor.WHITE + result.getString("reason");
 						if(result.getInt("permanent") == 1)
-							returnString = returnString + " (Permanent)";
+							tempString = tempString + " (Permanent)";
 						else
-							returnString = returnString + " (Expires: " + result.getString("expires_at") + ")";
+							tempString = tempString + " (Expires: " + result.getString("expires_at") + ")";
+						sender.sendMessage(tempString);
 					} while (result.next());
-					return returnString;	
 				}
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		}

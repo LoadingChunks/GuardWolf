@@ -79,16 +79,16 @@ public class GWBan implements CommandExecutor {
     {
     	if(args.length == 0)
     	{
-    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE +
-    				plugin.sql.ListBan(1, "", sender));
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Looking up bans...");
+    		plugin.sql.ListBan(1, "", sender);
     	} else if (args.length == 1)
     	{
-    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE +
-    				plugin.sql.ListBan(Integer.parseInt(args[0]), "", sender));
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Looking up bans...");
+    		plugin.sql.ListBan(Integer.parseInt(args[0]), "", sender);
     	} else if (args.length == 2)
     	{
-    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE +
-    				plugin.sql.ListBan(Integer.parseInt(args[0]), args[1], sender));
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Looking up bans for " + args[0] + "...");
+    		plugin.sql.ListBan(Integer.parseInt(args[0]), args[1], sender);
     	} else sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE + "Invalid Arguments!");
     }
     
