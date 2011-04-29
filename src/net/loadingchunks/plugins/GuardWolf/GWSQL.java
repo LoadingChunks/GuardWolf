@@ -77,7 +77,7 @@ public class GWSQL {
 		return null;
 	}
 	
-	public String ListBan(int page, String user, CommandSender sender)
+	public void ListBan(int page, String user, CommandSender sender)
 	{
 		String tempString = "";
 		if(user.isEmpty())
@@ -87,7 +87,7 @@ public class GWSQL {
 				ResultSet result = stat.executeQuery();
 				
 				if(!result.last())
-					return ChatColor.RED + "No bans found.";
+					sender.sendMessage(ChatColor.RED + "No bans found.");
 				else {
 					result.first();
 					do
@@ -102,7 +102,7 @@ public class GWSQL {
 				ResultSet result = stat.executeQuery();
 				
 				if(!result.last())
-					return ChatColor.RED + "No bans found for this user.";
+					sender.sendMessage(ChatColor.RED + "No bans found for this user.");
 				else {
 					result.first();
 					do
@@ -117,6 +117,6 @@ public class GWSQL {
 				}
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		}
-		return "Error getting Ban List!";
+		sender.sendMessage(ChatColor.RED + "Error getting Ban List!");
 	}
 }
