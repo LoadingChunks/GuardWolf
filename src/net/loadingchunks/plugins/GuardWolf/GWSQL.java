@@ -106,14 +106,14 @@ public class GWSQL {
 					return ChatColor.RED + "No bans found for this user.";
 				else {
 					result.first();
-					while(result.next())
+					do
 					{
 						returnString = returnString + "\n- " + result.getString("reason");
 						if(result.getInt("permanent") == 1)
 							returnString = returnString + " (Permanent)";
 						else
 							returnString = returnString + " (Expires: " + result.getString("expires_at") + ")";
-					}
+					} while (result.next());
 					return returnString;	
 				}
 			} catch ( SQLException e ) { e.printStackTrace(); }
