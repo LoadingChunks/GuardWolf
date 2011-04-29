@@ -63,6 +63,7 @@ public class GuardWolf extends JavaPlugin {
         gwConfig.put("limit_l3", _config.getString("gw.limit.level3"));
         gwConfig.put("default_time", _config.getString("gw.defaults.bantime"));
         gwConfig.put("maintenance_message", _config.getString("gw.maintenance.message"));
+        gwConfig.put("per_page", _config.getString("gw.core.perpage"));
         
         sql.Connect();
         
