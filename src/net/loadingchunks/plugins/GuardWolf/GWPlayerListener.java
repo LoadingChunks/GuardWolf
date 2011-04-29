@@ -20,7 +20,7 @@ public class GWPlayerListener extends PlayerListener {
 		if(result != null)
 		{
 			p.disallow(PlayerLoginEvent.Result.KICK_OTHER, result);
-		} else if (this.plugin.maintenanceMode && this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.gw.can_access_mm"))
+		} else if (this.plugin.maintenanceMode && !this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.gw.can_access_mm"))
 			p.disallow(PlayerLoginEvent.Result.KICK_OTHER, this.plugin.gwConfig.get("maintenance_message"));
 	}
 }
