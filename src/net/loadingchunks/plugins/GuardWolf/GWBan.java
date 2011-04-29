@@ -59,7 +59,7 @@ public class GWBan implements CommandExecutor {
     	} else {
     		if(args.length >= 2)
     		{
-    			if(args[1].equalsIgnoreCase("permanent"))
+    			if(!args[1].equalsIgnoreCase("permanent"))
     				time = TimeParser.parseTime(args[1], sender);
     		}
     		else if (args.length < 2)
