@@ -55,8 +55,7 @@ public class GWSQL {
 		try {
 			PreparedStatement stat = con.prepareStatement("SELECT * FROM `mcusers_ban` WHERE expires_at > NOW() AND `user` = '" + user + "' ORDER BY id DESC");
 			ResultSet result = stat.executeQuery();
-			result.next();
-			if(!result.wasNull())
+			if(result.last())
 			{
 				if(result.getString("expires_at").equalsIgnoreCase("00/00/00 00:00:00"))
 					return result.getString("reason") + System.getProperty("line.separator") + " (Permanent Ban)";
