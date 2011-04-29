@@ -38,13 +38,58 @@ public class GWBan implements CommandExecutor {
         	return true;
         } else if(command.getName().equalsIgnoreCase("ban"))
         {
-        	funcBan(player, args);
-        	return true;
-        }
+        	if(this.plugin.gm.getWorldsHolder().getWorldPermissions((Player) sender).has((Player) sender, "guardwolf.ban.ban"))
+        	{
+        		funcBan(player, args);
+        		return true;
+        	} else return false;
+        } else if(command.getName().equalsIgnoreCase("unban"))
+        {
+        	if(this.plugin.gm.getWorldsHolder().getWorldPermissions((Player) sender).has((Player) sender, "guardwolf.ban.unban"))
+        	{
+        		funcUnBan(player, args);
+        		return true;
+        	} else return false;
+        } else if(command.getName().equalsIgnoreCase("banlist"))
+        {
+        	if(this.plugin.gm.getWorldsHolder().getWorldPermissions((Player) sender).has((Player) sender, "guardwolf.ban.banlist"))
+        	{
+        		funcBanList(player, args);
+        		return true;
+        	} else return false;
+    	}
         else
         	player.sendMessage("That command is unknown/not implemented yet!");
         
         return false;
+    }
+    
+    private void funcUnBan(Player sender, String[] args) {
+    	if(args.length == 0)
+    	{
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "No arguments given!");
+    		return;
+    	} else {
+    		plugin.sql.UnBan(args[0], sender.getName());
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + " Unbanned user " + ChatColor.YELLOW + args[0]);
+    	}
+	}
+
+	public void funcBanList(Player sender, String[] args)
+    {
+    	if(args.length == 0)
+    	{
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE +
+    				plugin.sql.ListBan(1, "", sender));
+    	} else if (args.length == 1)
+    	{
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE +
+    				plugin.sql.ListBan(Integer.parseInt(args[0]), "", sender));
+    	} else if (args.length == 2)
+    	{
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE +
+    				plugin.sql.ListBan(Integer.parseInt(args[0]), args[1], sender));
+    	} else sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.WHITE + "Invalid Arguments!");
     }
     
     public void funcBan(Player sender, String[] args)
