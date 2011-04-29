@@ -87,7 +87,7 @@ public class GWSQL {
 				ResultSet result = stat.executeQuery();
 				
 				if(!result.last())
-					return ChatColor.RED + "No bans found!";
+					return ChatColor.RED + "No bans found.";
 				else {
 					result.first();
 					do
@@ -99,7 +99,7 @@ public class GWSQL {
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		} else {
 			try {
-				PreparedStatement stat = con.prepareStatement("SELECT *,COUNT(*) as c FROM `mcusers_ban` WHERE `user` = '" + user + "' ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
+				PreparedStatement stat = con.prepareStatement("SELECT * FROM `mcusers_ban` WHERE `user` = '" + user + "' ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
 				ResultSet result = stat.executeQuery();
 				
 				if(!result.last())
@@ -108,6 +108,7 @@ public class GWSQL {
 					result.first();
 					do
 					{
+						System.out.print("Look what I found!");
 						returnString = returnString + "\n- " + result.getString("reason");
 						if(result.getInt("permanent") == 1)
 							returnString = returnString + " (Permanent)";
