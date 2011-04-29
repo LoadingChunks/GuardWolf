@@ -79,9 +79,9 @@ public class GWBan implements CommandExecutor {
     			if(args[1].equalsIgnoreCase("permanent"))
     				plugin.sql.Ban(args[0], sender.getName(), 0, reason);
     			else
-    				plugin.sql.Ban(args[0], sender.getName(), ((System.currentTimeMillis() + time.getTimeInMillis()) / 1000), reason);
+    				plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason);
     		} else
-    			plugin.sql.Ban(args[0], sender.getName(), ((System.currentTimeMillis() + time.getTimeInMillis()) / 1000), reason);
+    			plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() + time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason);
     		
     	}
     }
