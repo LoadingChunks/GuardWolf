@@ -33,7 +33,7 @@ public class GWBan implements CommandExecutor {
         }
         Player player = (Player) sender;
 
-        if (args.length == 0 && !command.getName().equalsIgnoreCase("unban")) {
+        if (args.length == 0 && !command.getName().equalsIgnoreCase("banlist")) {
         	player.sendMessage("GuardWolf detected no arguments, type '/gw help' for a list of commands.");
         	return true;
         } else if(command.getName().equalsIgnoreCase("ban"))

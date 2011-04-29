@@ -90,10 +90,10 @@ public class GWSQL {
 					return ChatColor.RED + "No bans found!";
 				else {
 					result.first();
-					while(result.next())
+					do
 					{
 						returnString = returnString + "\n- " + result.getString("user") + " (" + result.getInt("c") + " bans found)";
-					}
+					} while(result.next());
 					return returnString;	
 				}
 			} catch ( SQLException e ) { e.printStackTrace(); }
