@@ -49,7 +49,7 @@ public class GWBan implements CommandExecutor {
     
     public void funcBan(Player sender, String[] args)
     {
-        Calendar time = null;
+        Calendar time = null;  
         String reason = "";
     	if(args.length == 0)
     	{

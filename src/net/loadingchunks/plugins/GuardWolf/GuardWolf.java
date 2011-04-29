@@ -6,10 +6,14 @@ import java.util.HashMap;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.config.Configuration;
+import org.anjocaido.groupmanager.GroupManager;
+import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
+import org.anjocaido.groupmanager.dataholder.worlds.WorldsHolder;
 
 /**
  * GuardWolf Ban System plugin for Bukkit
@@ -20,6 +24,9 @@ public class GuardWolf extends JavaPlugin {
 	public final HashMap<String, String> gwConfig = new HashMap<String, String>();
 	public final GWSQL sql = new GWSQL(this);
 	private final GWPlayerListener playerListener = new GWPlayerListener(this);
+	public GroupManager gm;
+	public WorldsHolder wd;
+	public boolean maintenanceMode = false;
 
     public void onDisable() {
         System.out.println("Goodbye world!");
@@ -61,6 +68,19 @@ public class GuardWolf extends JavaPlugin {
         sql.Stats();
         
         System.out.println("GuardWolf Config saved to memory.");
+        
+        Plugin p = this.getServer().getPluginManager().getPlugin("GroupManager");
+        if(p != null)
+        {
+        	System.out.println("[GUARDWOLF] GroupManager detected, initialising...");
+        	if (!this.getServer().getPluginManager().isPluginEnabled(p))
+        		this.getServer().getPluginManager().enablePlugin(p);
+        	gm = (GroupManager) p;
+        	wd = gm.getWorldsHolder();
+        } else {
+        	System.out.println("[GUARDWOLF] GroupManager not present, disabling...");
+        	this.getPluginLoader().disablePlugin(this);
+        }
 
         // EXAMPLE: Custom code, here we just output some info so we can check all is well
         PluginDescriptionFile pdfFile = this.getDescription();
