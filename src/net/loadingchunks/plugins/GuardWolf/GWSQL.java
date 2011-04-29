@@ -57,7 +57,7 @@ public class GWSQL {
 			ResultSet result = stat.executeQuery();
 			if(result.last())
 			{
-				if(result.getString("expires_at").equalsIgnoreCase("00/00/00 00:00:00"))
+				if(result.getString("expires_at").equalsIgnoreCase("1970-01-01 01:00:00"))
 					return result.getString("reason") + System.getProperty("line.separator") + " (Permanent Ban)";
 				else
 					return result.getString("reason") + System.getProperty("line.separator") + " (Expires " + result.getString("expires_at") + ")";

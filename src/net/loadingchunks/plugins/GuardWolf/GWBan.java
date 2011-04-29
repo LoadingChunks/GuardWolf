@@ -49,8 +49,9 @@ public class GWBan implements CommandExecutor {
     
     public void funcBan(Player sender, String[] args)
     {
-        Calendar time = null;  
+        Calendar time = null;
         String reason = "";
+        
     	if(args.length == 0)
     	{
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "No arguments given!");
@@ -58,7 +59,7 @@ public class GWBan implements CommandExecutor {
     	} else {
     		if(args.length >= 2)
     		{
-    			if(args[1] != "permanent")
+    			if(args[1].equalsIgnoreCase("permanent"))
     				time = TimeParser.parseTime(args[1], sender);
     		}
     		else if (args.length < 2)
@@ -76,7 +77,7 @@ public class GWBan implements CommandExecutor {
     			if(args[1].equalsIgnoreCase("permanent"))
     				plugin.sql.Ban(args[0], sender.getName(), 0, reason);
     			else
-    				plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
+    				plugin.sql.Ban(args[0], sender.getName(), ((System.currentTimeMillis() + time.getTimeInMillis()) / 1000), reason);
     		} else
     			plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
     		
