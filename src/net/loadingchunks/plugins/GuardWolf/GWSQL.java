@@ -92,7 +92,7 @@ public class GWSQL {
 					result.first();
 					do
 					{
-						returnString = returnString + "\n- " + result.getString("user") + " (" + result.getInt("c") + " bans found)";
+						returnString = returnString + System.getProperty("line.separator") + "- " + result.getString("user") + " (" + result.getInt("c") + " bans found)";
 					} while(result.next());
 					return returnString;	
 				}
@@ -109,7 +109,7 @@ public class GWSQL {
 					do
 					{
 						System.out.print("Look what I found!");
-						returnString = returnString + "\n- " + result.getString("reason");
+						returnString = returnString + System.getProperty("line.separator") + "- " + result.getString("reason");
 						if(result.getInt("permanent") == 1)
 							returnString = returnString + " (Permanent)";
 						else
