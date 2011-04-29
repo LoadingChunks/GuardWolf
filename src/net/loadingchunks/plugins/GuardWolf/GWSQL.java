@@ -29,6 +29,7 @@ public class GWSQL {
 	
 	public void Ban(String name, String banner, long time, String reason)
 	{
+		this.plugin.getServer().getPlayer(banner).sendMessage("Timestamp Used: " + time);
 		Integer strike = 1;
 		try {
 			PreparedStatement stat = con.prepareStatement("INSERT INTO `" + this.plugin.gwConfig.get("db_table") + "`" +
