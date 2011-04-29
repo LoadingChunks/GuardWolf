@@ -79,7 +79,7 @@ public class GWBan implements CommandExecutor {
     			else
     				plugin.sql.Ban(args[0], sender.getName(), ((System.currentTimeMillis() + time.getTimeInMillis()) / 1000), reason);
     		} else
-    			plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + time.getTimeInMillis()) / 1000), reason);
+    			plugin.sql.Ban(args[0], sender.getName(), ((System.currentTimeMillis() + time.getTimeInMillis()) / 1000), reason);
     		
     	}
     }
