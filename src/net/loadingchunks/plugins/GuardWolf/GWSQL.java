@@ -113,6 +113,9 @@ public class GWSQL {
 							tempString = tempString + " (Permanent)";
 						else
 							tempString = tempString + " (Expires: " + result.getString("expires_at") + ")";
+						
+						if(result.getInt("unbanned") == 1)
+							tempString = tempString + ChatColor.GREEN + " (UNBANNED)";
 						sender.sendMessage(tempString);
 					} while (result.next());
 				}
