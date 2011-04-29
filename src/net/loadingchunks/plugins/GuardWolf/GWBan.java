@@ -64,6 +64,8 @@ public class GWBan implements CommandExecutor {
     		}
     		else if (args.length < 2)
     			time = TimeParser.parseTime(this.plugin.gwConfig.get("default_time"), sender);
+    		
+    		sender.sendMessage(time.toString());
 
     		if(args.length >= 3)
     		{
