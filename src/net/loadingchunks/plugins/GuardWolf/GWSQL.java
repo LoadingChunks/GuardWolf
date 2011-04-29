@@ -95,6 +95,7 @@ public class GWSQL {
 						sender.sendMessage("- " + ChatColor.WHITE + result.getString("user") + " (" + result.getInt("c") + " bans found)");
 					} while(result.next());
 				}
+			return;
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		} else {
 			try {
@@ -115,6 +116,7 @@ public class GWSQL {
 						sender.sendMessage(tempString);
 					} while (result.next());
 				}
+			return;
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		}
 		sender.sendMessage(ChatColor.RED + "Error getting Ban List!");
