@@ -83,6 +83,13 @@ public class GWSQL {
 		if(user.isEmpty())
 		{
 			try {
+				PreparedStatement statc = con.prepareStatement("SELECT COUNT(*) as c FROM `" + this.plugin.gwConfig.get("db_table") + "`");
+				ResultSet resultc = statc.executeQuery();
+				
+				resultc.first();
+				
+				sender.sendMessage(ChatColor.DARK_AQUA + "------------ Page " + page + "/" + Math.ceil(((int)resultc.getInt("c") / Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + " ------------");
+				
 				PreparedStatement stat = con.prepareStatement("SELECT *,COUNT(*) as c FROM `" + this.plugin.gwConfig.get("db_table") + "` GROUP BY `user` ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
 				ResultSet result = stat.executeQuery();
 				
