@@ -96,6 +96,12 @@ public class GWBan implements CommandExecutor {
     {
         Calendar time = null;
         String reason = "";
+        String target = "";
+        
+        if(this.plugin.getServer().getPlayer(args[0]) != null)
+        	target = this.plugin.getServer().getPlayer(args[0]).getName();
+        else
+        	target = args[0];
         
     	if(args.length == 0)
     	{
