@@ -116,9 +116,6 @@ public class GWBan implements CommandExecutor {
     		}
     		else
     			time = TimeParser.parseTime(this.plugin.gwConfig.get("default_time"), sender);
-    		
-    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Banning " + ChatColor.YELLOW + target + ChatColor.RED + " for so long, the default would be: " + this.plugin.gwConfig.get("default_time"));
-    		sender.sendMessage(time.toString());
 
     		if(args.length >= 3)
     		{
@@ -136,10 +133,12 @@ public class GWBan implements CommandExecutor {
     			else
     				plugin.sql.Ban(target, sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
     		} else
-    			plugin.sql.Ban(target, sender.getName(), (((System.currentTimeMillis() + time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
+    			plugin.sql.Ban(target, sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
     		
     		if(this.plugin.getServer().getPlayer(target) != null)
     			this.plugin.getServer().getPlayer(target).kickPlayer(reason);
+    		
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.YELLOW + target + ChatColor.WHITE + " has been banned.");
     		
     	}
     }
