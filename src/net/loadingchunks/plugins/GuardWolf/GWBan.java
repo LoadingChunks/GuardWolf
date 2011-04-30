@@ -71,7 +71,7 @@ public class GWBan implements CommandExecutor {
     		return;
     	} else {
     		plugin.sql.UnBan(args[0], sender.getName());
-    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + " Unbanned user " + ChatColor.YELLOW + args[0]);
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Unbanned user " + ChatColor.YELLOW + args[0]);
     	}
 	}
 
@@ -115,6 +115,8 @@ public class GWBan implements CommandExecutor {
     			for (int i = 2; i < args.length; i++) {
     				reason = reason + " " + args[i];
     			}
+    		} else {
+    			this.plugin.gwConfig.get("default_reason");
     		}
     		
     		if(args.length >= 2)
@@ -125,6 +127,8 @@ public class GWBan implements CommandExecutor {
     				plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
     		} else
     			plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() + time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
+    		
+    		this.plugin.getServer().getPlayer(args[0]).kickPlayer(reason);
     		
     	}
     }
