@@ -97,17 +97,18 @@ public class GWBan implements CommandExecutor {
         Calendar time = null;
         String reason = "";
         String target = "";
-        
-        if(this.plugin.getServer().getPlayer(args[0]) != null)
-        	target = this.plugin.getServer().getPlayer(args[0]).getName();
-        else
-        	target = args[0];
+
         
     	if(args.length == 0)
     	{
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "No arguments given!");
     		return;
     	} else {
+            if(this.plugin.getServer().getPlayer(args[0]) != null)
+            	target = this.plugin.getServer().getPlayer(args[0]).getName();
+            else
+            	target = args[0];
+
     		if(args.length >= 2)
     		{
     			if(!args[1].equalsIgnoreCase("permanent"))
@@ -115,6 +116,8 @@ public class GWBan implements CommandExecutor {
     		}
     		else if (args.length < 2)
     			time = TimeParser.parseTime(this.plugin.gwConfig.get("default_time"), sender);
+    		
+    		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Banning " + ChatColor.YELLOW + target + ChatColor.RED + " for so long, the default would be: " + this.plugin.gwConfig.get("default_time"));
 
     		if(args.length >= 3)
     		{
