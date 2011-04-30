@@ -114,10 +114,11 @@ public class GWBan implements CommandExecutor {
     			if(!args[1].equalsIgnoreCase("permanent"))
     				time = TimeParser.parseTime(args[1], sender);
     		}
-    		else if (args.length < 2)
+    		else
     			time = TimeParser.parseTime(this.plugin.gwConfig.get("default_time"), sender);
     		
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Banning " + ChatColor.YELLOW + target + ChatColor.RED + " for so long, the default would be: " + this.plugin.gwConfig.get("default_time"));
+    		sender.sendMessage(time.toString());
 
     		if(args.length >= 3)
     		{
