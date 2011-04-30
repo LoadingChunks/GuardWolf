@@ -128,13 +128,14 @@ public class GWBan implements CommandExecutor {
     		if(args.length >= 2)
     		{
     			if(args[1].equalsIgnoreCase("permanent"))
-    				plugin.sql.Ban(args[0], sender.getName(), 0, reason, 1);
+    				plugin.sql.Ban(target, sender.getName(), 0, reason, 1);
     			else
-    				plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
+    				plugin.sql.Ban(target, sender.getName(), (((System.currentTimeMillis() - time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
     		} else
-    			plugin.sql.Ban(args[0], sender.getName(), (((System.currentTimeMillis() + time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
+    			plugin.sql.Ban(target, sender.getName(), (((System.currentTimeMillis() + time.getTimeInMillis()) + System.currentTimeMillis()) / 1000), reason, 0);
     		
-    		this.plugin.getServer().getPlayer(args[0]).kickPlayer(reason);
+    		if(this.plugin.getServer().getPlayer(target) != null)
+    			this.plugin.getServer().getPlayer(target).kickPlayer(reason);
     		
     	}
     }
