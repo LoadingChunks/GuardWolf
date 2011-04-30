@@ -88,7 +88,9 @@ public class GWSQL {
 				
 				resultc.first();
 				
-				sender.sendMessage(ChatColor.DARK_AQUA + "------------ Page " + page + "/" + Integer.parseInt(String.valueOf((Math.ceil((Double.parseDouble(resultc.getString("c")) / Double.parseDouble(this.plugin.gwConfig.get("per_page").toString())))))) + " ------------");
+				int pageCount = (int)Math.ceil((Double.parseDouble(resultc.getString("c")) / Double.parseDouble(this.plugin.gwConfig.get("per_page").toString())));
+				
+				sender.sendMessage(ChatColor.DARK_AQUA + "------------ Page " + page + "/" + pageCount + " ------------");
 				
 				PreparedStatement stat = con.prepareStatement("SELECT *,COUNT(*) as c FROM `" + this.plugin.gwConfig.get("db_table") + "` GROUP BY `user` ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
 				ResultSet result = stat.executeQuery();
@@ -102,7 +104,6 @@ public class GWSQL {
 						sender.sendMessage("- " + ChatColor.WHITE + result.getString("user") + " (" + result.getInt("c") + " bans found)");
 					} while(result.next());
 				}
-				sender.sendMessage("------ " + resultc.getInt("c") + " total bans present ------");
 			return;
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		} else {
