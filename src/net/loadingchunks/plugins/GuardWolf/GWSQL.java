@@ -103,7 +103,7 @@ public class GWSQL {
 					} while(result.next());
 				}
 				sender.sendMessage("------ " + resultc.getInt("c") + " total bans present ------");
-				sender.sendMessage("[DEBUG] " + Math.ceil(((int)resultc.getInt("c") / Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + " from: " + ((int)resultc.getInt("c") / Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
+				sender.sendMessage("[DEBUG] " + Math.ceil(((int)resultc.getInt("c") / Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + " from: " + Double.parseDouble(String.valueOf(((int)resultc.getInt("c") / Integer.parseInt(this.plugin.gwConfig.get("per_page"))))));
 			return;
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		} else {
