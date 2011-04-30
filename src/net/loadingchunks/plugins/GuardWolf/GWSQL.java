@@ -88,7 +88,7 @@ public class GWSQL {
 				
 				resultc.first();
 				
-				sender.sendMessage(ChatColor.DARK_AQUA + "------------ Page " + page + "/" + Math.ceil((Double.parseDouble(resultc.getString("c")) / Double.parseDouble(this.plugin.gwConfig.get("per_page").toString()))) + " ------------");
+				sender.sendMessage(ChatColor.DARK_AQUA + "------------ Page " + page + "/" + Integer.parseInt(String.valueOf((Math.ceil((Double.parseDouble(resultc.getString("c")) / Double.parseDouble(this.plugin.gwConfig.get("per_page").toString())))))) + " ------------");
 				
 				PreparedStatement stat = con.prepareStatement("SELECT *,COUNT(*) as c FROM `" + this.plugin.gwConfig.get("db_table") + "` GROUP BY `user` ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
 				ResultSet result = stat.executeQuery();
