@@ -83,7 +83,7 @@ public class GWSQL {
 		if(user.isEmpty())
 		{
 			try {
-				PreparedStatement statc = con.prepareStatement("SELECT DISTINCT column_name(name) COUNT(*) as c FROM `" + this.plugin.gwConfig.get("db_table") + "`");
+				PreparedStatement statc = con.prepareStatement("SELECT COUNT(DISTINCT `user`) as c FROM `" + this.plugin.gwConfig.get("db_table") + "`");
 				ResultSet resultc = statc.executeQuery();
 				
 				resultc.first();
