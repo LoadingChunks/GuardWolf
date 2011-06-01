@@ -11,9 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.anjocaido.groupmanager.GroupManager;
-import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
-import org.anjocaido.groupmanager.dataholder.worlds.WorldsHolder;
 
 /**
  * Handler for the /gw sample command.
@@ -62,7 +59,7 @@ public class GWCommand implements CommandExecutor {
 	{
 		Player pl = (Player) sender;
 		
-		if(!this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.gw.maintenance"))
+		if(!this.plugin.perm.ToggleMM(pl))
 			return false;
 		
 		if(args[1].equalsIgnoreCase("on"))
@@ -72,7 +69,7 @@ public class GWCommand implements CommandExecutor {
 			sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Maintenance Mode Enabled, kicking all players who shouldn't be here...");
 			for (Player p : this.plugin.getServer().getOnlinePlayers())
 			{
-				if(!this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(p, "guardwolf.gw.maintenance"))
+				if(!this.plugin.perm.MMAccess(pl))
 					p.kickPlayer(this.plugin.gwConfig.get("maintenance_message"));
 			}
 			return true;
@@ -90,13 +87,13 @@ public class GWCommand implements CommandExecutor {
     public void GWHelp(CommandSender sender)
     {
     	Player pl = (Player) sender;
-    	if(this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.ban.ban"))
+    	if(this.plugin.perm.canBan(pl))
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "/ban (name) [length] [reason]" + ChatColor.WHITE + " - Ban a player for a certain length of time (or permanently)");
-    	if(this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.ban.unban"))
+    	if(this.plugin.perm.canUnban(pl))
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "/unban (name)" + ChatColor.WHITE + " - Unban a player.");
-    	if(this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.ban.list"))
+    	if(this.plugin.perm.canBanList(pl))
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "/banlist [page] [name]" + ChatColor.WHITE + " - List all bans a player has received.");
-    	if(this.plugin.gm.getWorldsHolder().getWorldPermissions(pl).has(pl, "guardwolf.gw.maintenance"))
+    	if(this.plugin.perm.ToggleMM(pl))
     		sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "/gw maintenance on/off" + ChatColor.WHITE + " - Enables/Disables Maintenance Mode.");
     }
 }

@@ -38,21 +38,21 @@ public class GWBan implements CommandExecutor {
         	return true;
         } else if(command.getName().equalsIgnoreCase("ban"))
         {
-        	if(this.plugin.gm.getWorldsHolder().getWorldPermissions((Player) sender).has((Player) sender, "guardwolf.ban.ban"))
+        	if(this.plugin.perm.canBan((Player) sender))
         	{
         		funcBan(player, args);
         		return true;
         	} else return false;
         } else if(command.getName().equalsIgnoreCase("unban"))
         {
-        	if(this.plugin.gm.getWorldsHolder().getWorldPermissions((Player) sender).has((Player) sender, "guardwolf.ban.unban"))
+        	if(this.plugin.perm.canUnban((Player) sender))
         	{
         		funcUnBan(player, args);
         		return true;
         	} else return false;
         } else if(command.getName().equalsIgnoreCase("banlist"))
         {
-        	if(this.plugin.gm.getWorldsHolder().getWorldPermissions((Player) sender).has((Player) sender, "guardwolf.ban.banlist"))
+        	if(this.plugin.perm.canBanList((Player) sender))
         	{
         		funcBanList(player, args);
         		return true;
