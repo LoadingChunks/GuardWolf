@@ -69,7 +69,7 @@ public class GWCommand implements CommandExecutor {
 			sender.sendMessage(ChatColor.DARK_AQUA + "[GUARDWOLF] " + ChatColor.RED + "Maintenance Mode Enabled, kicking all players who shouldn't be here...");
 			for (Player p : this.plugin.getServer().getOnlinePlayers())
 			{
-				if(!this.plugin.perm.MMAccess(pl))
+				if(!this.plugin.perm.MMAccess(p))
 					p.kickPlayer(this.plugin.gwConfig.get("maintenance_message"));
 			}
 			return true;
