@@ -30,10 +30,10 @@ public class GuardWolf extends JavaPlugin {
 
     public void onEnable() {
         // Register our commands
-        getCommand("gw").setExecutor(new GWCommand(this));
-        getCommand("ban").setExecutor(new GWBan(this));
-        getCommand("unban").setExecutor(new GWBan(this));
-        getCommand("banlist").setExecutor(new GWBan(this));
+        getServer().getPluginCommand("gw").setExecutor(new GWCommand(this));
+        getServer().getPluginCommand("ban").setExecutor(new GWBan(this));
+        getServer().getPluginCommand("unban").setExecutor(new GWBan(this));
+        getServer().getPluginCommand("banlist").setExecutor(new GWBan(this));
         
         // Register events
         
