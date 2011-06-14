@@ -14,3 +14,9 @@ commands:
   banlist:
     description: View bans for a specific user.
     usage: Type /gw help for a full list of GuardWolf Commands.
+  gimp:
+    description: Gimp a player, so all they say is random rubbish!
+    usage: Type /gw help for a full list of GuardWolf Commands.
+  ungimp:
+    description: Ungimp a player.
+    usage: Type /gw help for a full list of GuardWolf Commands.
