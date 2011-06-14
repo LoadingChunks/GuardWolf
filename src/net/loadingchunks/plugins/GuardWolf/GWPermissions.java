@@ -50,5 +50,15 @@ public class GWPermissions {
 	  {
 		  return this.permissionHandler.has(p, "guardwolf.ban.unban");
 	  }
+	  
+	  public boolean canGimp(Player p) // Can gimp
+	  {
+		  return this.permissionHandler.has(p, "guardwolf.gimp.gimp");
+	  }
+	  
+	  public boolean canUnGimp(Player p) // Can ungimp
+	  {
+		  return this.permissionHandler.has(p, "guardwolf.gimp.ungimp");
+	  }
 	
 }

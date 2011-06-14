@@ -2,6 +2,7 @@
 package net.loadingchunks.plugins.GuardWolf;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
@@ -11,6 +12,8 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.config.Configuration;
+
+import com.sun.tools.javac.util.List;
 
 /**
  * GuardWolf Ban System plugin for Bukkit
@@ -23,6 +26,8 @@ public class GuardWolf extends JavaPlugin {
 	private final GWPlayerListener playerListener = new GWPlayerListener(this);
 	public GWPermissions perm = new GWPermissions(this);
 	public boolean maintenanceMode = false;
+	public ArrayList<String> GWGimped = new ArrayList<String>();
+	public ArrayList<Object> GimpLines = new ArrayList<Object>();
 
     public void onDisable() {
         System.out.println("Goodbye world!");
@@ -34,12 +39,15 @@ public class GuardWolf extends JavaPlugin {
         getServer().getPluginCommand("ban").setExecutor(new GWBan(this));
         getServer().getPluginCommand("unban").setExecutor(new GWBan(this));
         getServer().getPluginCommand("banlist").setExecutor(new GWBan(this));
+        getServer().getPluginCommand("gimp").setExecutor(new GWGimp(this));
+        getServer().getPluginCommand("ungimp").setExecutor(new GWGimp(this));
         
         // Register events
         
         PluginManager pm = getServer().getPluginManager();
         
         pm.registerEvent(Event.Type.PLAYER_LOGIN, playerListener, Priority.High, this);
+        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.High, this);
         
         // Get the config.
         
@@ -61,6 +69,7 @@ public class GuardWolf extends JavaPlugin {
         gwConfig.put("maintenance_message", _config.getString("gw.maintenance.message"));
         gwConfig.put("per_page", _config.getString("gw.core.perpage"));
         gwConfig.put("default_reason", _config.getString("gw.defaults.reason"));
+        this.GimpLines = (ArrayList<Object>)_config.getList("gw.gimp.lines");
         
         sql.Connect();
         
