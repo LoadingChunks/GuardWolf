@@ -47,7 +47,7 @@ public class GuardWolf extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         
         pm.registerEvent(Event.Type.PLAYER_LOGIN, playerListener, Priority.High, this);
-        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Low, this);
+        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Lowest, this);
         
         // Get the config.
         
