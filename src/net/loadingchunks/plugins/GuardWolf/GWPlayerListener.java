@@ -33,7 +33,7 @@ public class GWPlayerListener extends PlayerListener {
 		boolean done = false;
 		Random gen = new Random();
 		int rand = 0;
-		if(this.plugin.GWGimped.equals(player.getName()))
+		if(this.plugin.GWGimped.contains(player.getName()))
 		{
 			do {
 				rand = gen.nextInt(this.plugin.GimpLines.size());
