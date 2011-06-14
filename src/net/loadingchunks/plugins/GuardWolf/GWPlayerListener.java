@@ -40,8 +40,10 @@ public class GWPlayerListener extends PlayerListener {
 				if(this.plugin.GimpLines.get(rand) != null)
 					done = true;
 			} while (done == false);
-			
+			System.out.println("[GUARDWOLF] " + this.plugin.GimpLines.get(rand).toString());
 			event.setMessage(this.plugin.GimpLines.get(rand).toString());
+		} else {
+			System.out.println("[GUARDWOLF] Not gimped.");
 		}
 	}
 }
