@@ -6,6 +6,7 @@ import java.util.Random;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
@@ -15,6 +16,11 @@ public class GWPlayerListener extends PlayerListener {
 	public GWPlayerListener(GuardWolf plugin)
 	{
 		this.plugin = plugin;
+	}
+	
+	public void onPlayerKick(PlayerKickEvent p)
+	{
+		System.out.println("[GUARDWOLF] " + p.getReason());
 	}
 	
 	public void onPlayerLogin(PlayerLoginEvent p)
