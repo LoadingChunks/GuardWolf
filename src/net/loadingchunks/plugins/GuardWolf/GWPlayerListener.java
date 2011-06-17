@@ -20,7 +20,8 @@ public class GWPlayerListener extends PlayerListener {
 	
 	public void onPlayerKick(PlayerKickEvent p)
 	{
-		System.out.println("[GUARDWOLF] " + p.getReason());
+		if(p.getReason().equalsIgnoreCase("Flying is not enabled on this server") && this.plugin.perm.canFly(p.getPlayer()))
+			p.setCancelled(true);
 	}
 	
 	public void onPlayerLogin(PlayerLoginEvent p)

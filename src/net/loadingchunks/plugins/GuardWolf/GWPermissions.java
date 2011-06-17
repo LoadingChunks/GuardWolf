@@ -60,5 +60,9 @@ public class GWPermissions {
 	  {
 		  return this.permissionHandler.has(p, "guardwolf.gimp.ungimp");
 	  }
-	
+	  
+	  public boolean canFly(Player p) // Can FLYYYYYY
+	  {
+		  return this.permissionHandler.has(p, "guardwolf.gw.peterpan");
+	  }
 }
