@@ -36,8 +36,15 @@ public class GWSQL {
 		try {
 			PreparedStatement stat = con.prepareStatement("INSERT INTO `" + this.plugin.gwConfig.get("db_table") + "`" +
 					"(`user`,`country`,`banned_at`,`expires_at`,`reason`,`banned_by`,`strike`,`strike_expires`,`unbanned`,`permanent`)" +
-					" VALUES ('" + name + "','?',NOW(),FROM_UNIXTIME(" + time + "),'" + reason + "','" + banner + "'," + strike + ",NOW(),0," + permanent + ")"
+					" VALUES (?,?,NOW(),FROM_UNIXTIME(?),?,?,?,NOW(),0,?)"
 					);
+			stat.setString(1, name);
+			stat.setString(2, "?");
+			stat.setLong(3, time);
+			stat.setString(4, reason);
+			stat.setString(5, banner);
+			stat.setInt(6, strike);
+			stat.setInt(7, permanent);
 			stat.execute();
 		} catch ( SQLException e ) { e.printStackTrace(); }
 	}
@@ -45,7 +52,8 @@ public class GWSQL {
 	public void UnBan(String name, String unbanner)
 	{
 		try {
-			PreparedStatement stat = con.prepareStatement("UPDATE `" + this.plugin.gwConfig.get("db_table") + "` SET `unbanned` = 1 WHERE `user` = '" + name + "'");
+			PreparedStatement stat = con.prepareStatement("UPDATE `" + this.plugin.gwConfig.get("db_table") + "` SET `unbanned` = 1 WHERE `user` = ?");
+			stat.setString(1, name);
 			stat.execute();
 		} catch ( SQLException e ) { e.printStackTrace(); }
  	}
@@ -64,7 +72,8 @@ public class GWSQL {
 	{
 		System.out.println("[GW] Checking ban status...");
 		try {
-			PreparedStatement stat = con.prepareStatement("SELECT * FROM `" + this.plugin.gwConfig.get("db_table") + "` WHERE (expires_at > NOW() OR `permanent` = 1) AND `user` = '" + user + "' AND `unbanned` = 0 ORDER BY id DESC");
+			PreparedStatement stat = con.prepareStatement("SELECT * FROM `" + this.plugin.gwConfig.get("db_table") + "` WHERE (expires_at > NOW() OR `permanent` = 1) AND `user` = ? AND `unbanned` = 0 ORDER BY id DESC");
+			stat.setString(1, user);
 			ResultSet result = stat.executeQuery();
 			if(result.last())
 			{
@@ -108,7 +117,8 @@ public class GWSQL {
 			} catch ( SQLException e ) { e.printStackTrace(); }
 		} else {
 			try {
-				PreparedStatement stat = con.prepareStatement("SELECT * FROM `" + this.plugin.gwConfig.get("db_table") + "` WHERE `user` = '" + user + "' ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
+				PreparedStatement stat = con.prepareStatement("SELECT * FROM `" + this.plugin.gwConfig.get("db_table") + "` WHERE `user` = ? ORDER BY `permanent`,`expires_at` DESC LIMIT " + ((page - 1)*(Integer.parseInt(this.plugin.gwConfig.get("per_page")))) + "," + (Integer.parseInt(this.plugin.gwConfig.get("per_page"))));
+				stat.setString(1, user);
 				ResultSet result = stat.executeQuery();
 				
 				if(!result.last())

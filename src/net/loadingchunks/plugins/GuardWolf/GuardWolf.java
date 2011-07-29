@@ -4,16 +4,12 @@ package net.loadingchunks.plugins.GuardWolf;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.config.Configuration;
-
-import com.sun.tools.javac.util.List;
 
 /**
  * GuardWolf Ban System plugin for Bukkit
